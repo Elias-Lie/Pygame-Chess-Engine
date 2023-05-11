@@ -1,5 +1,8 @@
+from pathlib import Path
+
 # Path
-PATH = "/home/elias/Dev/"
+PATH = str(Path.cwd())[:len(str(Path.cwd()))-3]
+#PATH = "C:/Users/Elias/Downloads/Pygame-Chess-Engine-master/Pygame-Chess-Engine-master"
 
 # Screen dimensions
 HEIGHT = 1200
@@ -14,7 +17,7 @@ SQSIZE = WIDTH // COLS
 FPS = 144
 
 # options
-SCREEN_DIMENSIONS = [(WIDTH, HEIGHT)]
+SCREEN_DIMENSIONS = (WIDTH, HEIGHT)
 
 # Singleplayer
 STOCKFISH_ELO = 1800

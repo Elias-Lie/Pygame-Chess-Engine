@@ -40,5 +40,5 @@ class Button():
             
     
     def get_font(size):
-        return pygame.font.Font(f"{PATH}Pygame-Chess-Engine/assets/fonts/Montserrat-ExtraBold.ttf", size)
+        return pygame.font.Font(f"{PATH}/assets/fonts/Montserrat-ExtraBold.ttf", size)
             

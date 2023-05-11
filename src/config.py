@@ -13,9 +13,9 @@ class Config:
         self._add_themes()
         self.current_theme_idx = 0
         self.theme = self.themes[self.current_theme_idx]
-        self.font_path = f"{PATH}Pygame-Chess-Engine/assets/fonts/Montserrat-ExtraBold.ttf"
-        self.move_sound = Sound(os.path.join(f"{PATH}Pygame-Chess-Engine/assets/sounds/standard_move.ogg"))
-        self.capture_sound = Sound(os.path.join(f"{PATH}Pygame-Chess-Engine/assets/sounds/standard_capture.ogg"))
+        self.font_path = f"{PATH}/assets/fonts/Montserrat-ExtraBold.ttf"
+        self.move_sound = Sound(os.path.join(f"{PATH}/assets/sounds/standard_move.ogg"))
+        self.capture_sound = Sound(os.path.join(f"{PATH}/assets/sounds/standard_capture.ogg"))
     
         
     def _add_themes(self):

@@ -17,7 +17,7 @@ class Piece:
     
     def set_texture(self):
         self.texture = pygame.image.load(os.path.join(
-            f"{PATH}Pygame-Chess-Engine/assets/images/standard_{self.color}_{self.name}.png"))
+            f"{PATH}/assets/images/standard_{self.color}_{self.name}.png"))
         
         
 class Pawn(Piece):

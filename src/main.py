@@ -130,7 +130,7 @@ class Main:
                 # click buttons
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if RESULUTION_BUTTON.checkForInput(OPTIONS_MOUSE_POS):
-                        self.screen = pygame.display.set_mode(SCREEN_DIMENSIONS[0])
+                        self.screen = pygame.display.set_mode(SCREEN_DIMENSIONS)
                 
             pygame.display.update()
             
@@ -180,7 +180,7 @@ class Main:
         game = self.game
         board = self.game.board
         
-        stockfish = Stockfish(path=r"C:\Users\Elias\Dev\Chess\stockfish_15.1_win_x64_avx2\stockfish-windows-2022-x86-64-avx2")
+        stockfish = Stockfish(path=fr"{PATH}\stockfish_15.1_win_x64_avx2\stockfish-windows-2022-x86-64-avx2")
         stockfish.set_elo_rating(STOCKFISH_ELO)
         
         value = random.randint(0, 1)
@@ -218,7 +218,7 @@ class Main:
                     
                     # take move
                     elif (clicked_row, clicked_col) in board.valid_moves:
-                        if board.squares[clicked_row][clicked_col].has_enemy_piece(game.next_player) or board.en_passant(clicked_row, clicked_col):
+                        if board.squares[clicked_row][clicked_col].has_enemy_piece(game.next_player) or board.en_passant((clicked_row, clicked_col)):
                             game.config.capture_sound.play()
                             board.halfmove_counter = 0
                         else:
@@ -304,7 +304,7 @@ class Main:
 
                         # take move
                         elif (clicked_row, clicked_col) in board.valid_moves:
-                            if board.squares[clicked_row][clicked_col].has_enemy_piece(game.next_player) or board.en_passant(clicked_row, clicked_col):
+                            if board.squares[clicked_row][clicked_col].has_enemy_piece(game.next_player) or board.en_passant((clicked_row, clicked_col)):
                                 game.config.capture_sound.play()
                                 board.halfmove_counter = 0
                             else:
@@ -387,7 +387,7 @@ class Main:
                     
                     # take move
                     if (clicked_row, clicked_col) in board.valid_moves:
-                        if board.squares[clicked_row][clicked_col].has_enemy_piece(game.next_player) or board.en_passant(clicked_row, clicked_col):
+                        if board.squares[clicked_row][clicked_col].has_enemy_piece(game.next_player) or board.en_passant((clicked_row, clicked_col)):
                             game.config.capture_sound.play()
                             board.halfmove_counter = 0
                         else:
