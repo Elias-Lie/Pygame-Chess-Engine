@@ -5,6 +5,11 @@
 - Local games
 - Games against stockfish
 
+### Current list of bugs
+- En Passant own pawns
+- King moves weird
+- calculation of legal moves too long
+
 ### Configuration
 You can customize your experience with the constants and config file.
 
