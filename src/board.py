@@ -83,7 +83,7 @@ class Board:
                 move_col = move[1]
                 
                 if self.square_valid(move_row, move_col):
-                    if self.squares[move_row][move_col].has_enemy_piece(piece.color) or self.en_passant((move_row, move_col)):
+                    if self.squares[move_row][move_col].has_enemy_piece(piece.color): # or self.en_passant((move_row, move_col)):
                         self.valid_moves.append(move)
         
         
@@ -243,17 +243,20 @@ class Board:
             _castling_moves()
             
             
-    def en_passant(self, move):
-        if self.squares[self.current_piece[0]][self.current_piece[1]].piece.name != "pawn":
-            return False
-        
-        transmutation_table = {"a": 0, "b": 1, "c": 2, "d": 3, "e": 4, "f": 5, "g": 6, "h": 7}
-        part = self.status.split(" ")[1]
-        
-        if part != "-":
-            return (7-int(part[1])+1, transmutation_table[part[0]]) == move
-        else:
-            return False
+    #def en_passant(self, move):
+    #    if self.squares[self.current_piece[0]][self.current_piece[1]].is_empty():
+    #        return False
+    #    
+    #    if self.squares[self.current_piece[0]][self.current_piece[1]].piece.name != "pawn":
+    #        return False
+    #    
+    #    transmutation_table = {"a": 0, "b": 1, "c": 2, "d": 3, "e": 4, "f": 5, "g": 6, "h": 7}
+    #    part = self.status.split(" ")[1]
+    #    
+    #    if part != "-":
+    #        return (7-int(part[1])+1, transmutation_table[part[0]]) == move
+    #    else:
+    #        return False
     
 
     def validate_move(self, move_to_validate, castling="no"):
@@ -301,11 +304,11 @@ class Board:
             if move_to_validate == (cp_row, cp_col+2) and piece.name == "king":
                 if self.validate_move(move_to_validate, "king"):
                     valid_moves.append(move_to_validate)
-            if move_to_validate == (cp_row, cp_col-2) and piece.name == "king":
+            elif move_to_validate == (cp_row, cp_col-2) and piece.name == "king":
                 if self.validate_move(move_to_validate, "queen"):
                     valid_moves.append(move_to_validate)
                     
-            if self.validate_move(move_to_validate):
+            elif self.validate_move(move_to_validate):
                 valid_moves.append(move_to_validate)
     
         self.valid_moves = valid_moves.copy()
@@ -452,23 +455,24 @@ class Board:
                         string = string + letter
                 self.status = f"{string} {status[1]}"
                 
-        # en passant
-        elif piece.name == "pawn":
-            if old_row - row == 2 or old_row - row == -2:
-                transmutation_table = {0: "a", 1: "b", 2: "c", 3: "d", 4: "e", 5: "f", 6: "g", 7: "h"}
-                parts = self.status.split(" ")
-                r = 7-row if piece.color == "white" else 7-row+2
-                string = f"{parts[0]} {transmutation_table[col]}{r}"
-                self.status = string                
-            elif self.en_passant((row, col)):
-                if piece.color == "white": self.squares[row+1][col].piece = None
-                else: self.squares[row-1][col].piece = None
-                parts = self.status.split(" ")
-                string = f"{parts[0]} -"
-            
-            # promotion
-            elif row == 7:
-                self.squares[row][col].piece = Queen(piece.color)
+        ## en passant
+        #elif piece.name == "pawn":
+        #    if old_row - row == 2 or old_row - row == -2:
+        #        transmutation_table = {0: "a", 1: "b", 2: "c", 3: "d", 4: "e", 5: "f", 6: "g", 7: "h"}
+        #        parts = self.status.split(" ")
+        #        r = 7-row if piece.color == "white" else 7-row+2
+        #        string = f"{parts[0]} {transmutation_table[col]}{r}"
+        #        self.status = string
+        #    elif self.en_passant((row, col)):
+        #        if piece.color == "white": self.squares[row+1][col].piece = None
+        #        else: self.squares[row-1][col].piece = None
+        #        parts = self.status.split(" ")
+        #        string = f"{parts[0]} -"
+        #        
+        #    
+        #    # promotion
+        #    elif row == 7:
+        #        self.squares[row][col].piece = Queen(piece.color)
                 
         self.convert_to_fen() 
     

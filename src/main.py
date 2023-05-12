@@ -218,7 +218,7 @@ class Main:
                     
                     # take move
                     elif (clicked_row, clicked_col) in board.valid_moves:
-                        if board.squares[clicked_row][clicked_col].has_enemy_piece(game.next_player) or board.en_passant((clicked_row, clicked_col)):
+                        if board.squares[clicked_row][clicked_col].has_enemy_piece(game.next_player): #or board.en_passant((clicked_row, clicked_col)):
                             game.config.capture_sound.play()
                             board.halfmove_counter = 0
                         else:
@@ -304,7 +304,7 @@ class Main:
 
                         # take move
                         elif (clicked_row, clicked_col) in board.valid_moves:
-                            if board.squares[clicked_row][clicked_col].has_enemy_piece(game.next_player) or board.en_passant((clicked_row, clicked_col)):
+                            if board.squares[clicked_row][clicked_col].has_enemy_piece(game.next_player): #or board.en_passant((clicked_row, clicked_col)):
                                 game.config.capture_sound.play()
                                 board.halfmove_counter = 0
                             else:
@@ -387,7 +387,7 @@ class Main:
                     
                     # take move
                     if (clicked_row, clicked_col) in board.valid_moves:
-                        if board.squares[clicked_row][clicked_col].has_enemy_piece(game.next_player) or board.en_passant((clicked_row, clicked_col)):
+                        if board.squares[clicked_row][clicked_col].has_enemy_piece(game.next_player): # or board.en_passant((clicked_row, clicked_col)):
                             game.config.capture_sound.play()
                             board.halfmove_counter = 0
                         else:
